@@ -15,8 +15,8 @@ int main() {
             case 's':
                 steps++;
                 printf("Der Roboter geht einen Schritt nach vorne.\n");
-                if (steps == 5) {
-                    printf("Achtung, eine Wand ist im Weg!\n");
+                if (steps % 5 == 0) {
+                    printf("Es wurde eine Wand errichtet!\n");
                 }
                 break;
             case 'd':
@@ -34,20 +34,17 @@ int main() {
 
     if (turns >= 4) {
         printf("Der Roboter geht den halben Weg zurück, da er Akku braucht.\n");
-        for (int i = 0; i < steps/2; i++) {
-            printf("Soll der Roboter einen Schritt zurück machen? (y/n)\n");
-            char answer;
-            scanf(" %c", &answer);
-            if (answer == 'y') {
-                printf("Der Roboter geht einen Schritt zurück.\n");
-            } else {
-                printf("Der Roboter wartet an Ort und Stelle.\n");
-            }
+        printf("Soll der Roboter zur Ladestation fahren? (y/n)\n");
+        char answer;
+        scanf(" %c", &answer);
+        if (answer == 'y') {
+            printf("Der Roboter fährt zur Ladestation, die 5 Schritte entfernt ist.\n");
+        } else {
+            printf("Der Roboter bleibt an Ort und Stelle.\n");
         }
-        printf("Der Roboter fährt zur Ladestation, die 5 Schritte entfernt ist.\n");
+    } else {
+        printf("Der Roboter ist noch nicht weit genug gegangen, um den Akku zu entladen.\n");
     }
-
-    printf("Der Roboter ist zurück am Start!\n");
 
     return 0;
 }
