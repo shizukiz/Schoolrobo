@@ -14,19 +14,18 @@ int main() {
         switch (command) {
             case 's':
                 steps++;
-                printf("Der Roboter geht einen Schritt nach vorne.\n");
-                if (steps % 5 == 0) {
-                    printf("Eine Wand ist aufgetaucht!\n");
-                    printf("In welche Richtung soll sich der Roboter drehen? (l/r)\n");
+                if (steps == 5) {
+                    printf("Eine Wand taucht direkt vor dem Roboter auf!\n");
+                    printf("In welche Richtung soll sich der Roboter drehen? (l für links, r für rechts)\n");
                     char direction;
                     scanf(" %c", &direction);
                     if (direction == 'l') {
-                        printf("Der Roboter dreht sich um 90 Grad nach links.\n");
-                        turns--;
+                        turns += 3;
                     } else {
-                        printf("Der Roboter dreht sich um 90 Grad nach rechts.\n");
                         turns++;
                     }
+                } else {
+                    printf("Der Roboter geht einen Schritt nach vorne.\n");
                 }
                 break;
             case 'd':
