@@ -1,54 +1,97 @@
 #include <stdio.h>
-#include <unistd.h>
+#include <string.h>
 
 int main() {
-    int steps = 0;
-    int battery = 100;
+    int x = 0;  // x-Koordinate des Roboters
+    int y = 0;  // y-Koordinate des Roboters
+    int direction = 0;  // Ausrichtung des Roboters (0 = Norden, 1 = Osten, 2 = Süden, 3 = Westen)
 
-    printf("Willkommen beim Roboter-Steuerungsprogramm!\n");
-    printf("Geben Sie 'l' ein, um den Roboter nach links zu drehen, 'r' um ihn nach rechts zu drehen und 's', um ihn geradeaus zu bewegen. Drücken Sie einfach Enter, um die Eingabe zu bestätigen.\n\n");
-
-    while (battery > 0) {
-        printf("Schritt %d: ", steps);
-        char direction;
-        scanf(" %c", &direction);
-
-        if (direction == 'l') {
-            printf("Nach links drehen.\n");
-        } else if (direction == 'r') {
-            printf("Nach rechts drehen.\n");
-        } else {
-            printf("Geradeaus gehen.\n");
+    // Führe die Schleife aus, bis der Roboter zur Ladestation zurückkehrt
+    while (x != 0 || y != 0 || direction != 0) {
+        // Bewege den Roboter um einen Schritt nach vorne
+        switch (direction) {
+            case 0:  // Norden
+                y++;
+                break;
+            case 1:  // Osten
+                x++;
+                break;
+            case 2:  // Süden
+                y--;
+                break;
+            case 3:  // Westen
+                x--;
+                break;
         }
 
-        steps++;
+        // Frage den Benutzer, ob der Roboter eine Wand berührt hat
+        printf("Befindet sich der Roboter an einer Wand? (ja/nein) ");
+        char input[10];
+        scanf("%s", input);
 
-        if (steps % 7 == 0) {
-            printf("Möchtest du dich nach links (l) oder rechts (r) drehen? ");
-            scanf(" %c", &direction);
-            if (direction == 'l') {
-                printf("Nach links drehen.\n");
-            } else {
-                printf("Nach rechts drehen.\n");
+        if (strcmp(input, "ja") == 0) {
+            // Drehe den Roboter nach links und bewege ihn um drei Schritte nach vorne
+            direction = (direction + 3) % 4;
+            switch (direction) {
+                case 0:  // Norden
+                    y += 3;
+                    break;
+                case 1:  // Osten
+                    x += 3;
+                    break;
+                case 2:  // Süden
+                    y -= 3;
+                    break;
+                case 3:  // Westen
+                    x -= 3;
+                    break;
             }
-        }
 
-        if (steps == 20) {
-            printf("Batterie leer! Ausschalten.\n");
-            break;
-        }
-
-        battery--;
-        
-        if (steps % 10 == 0) {
-            printf("Pause für 10 Sekunden...\n");
-            for (int i = 10; i >= 1; i--) {
-                printf("%d Sekunden verbleiben...\n", i);
-                sleep(1);
+            // Drehe den Roboter erneut nach links und bewege ihn um sieben Schritte nach vorne
+            direction = (direction + 3) % 4;
+            switch (direction) {
+                case 0:  // Norden
+                    y += 7;
+                    break;
+                case 1:  // Osten
+                    x += 7;
+                    break;
+                case 2:  // Süden
+                    y -= 7;
+                    break;
+                case 3:  // Westen
+                    x -= 7;
+                    break;
             }
-            printf("Roboter ist wieder bereit!\n");
-        }
-    }
 
-    return 0;
+            // Drehe den Roboter um 180 Grad und bewege ihn um sieben Schritte nach vorne
+            direction = (direction + 2) % 4;
+            switch (direction) {
+                case 0:  // Norden
+                    y += 7;
+                    break;
+                case 1:  // Osten
+                    x += 7;
+                    break;
+                case 2:  // Süden
+                    y -= 7;
+                    break;
+                case 3:  // Westen
+                    x -= 7;
+                    break;
+            }
+
+            // Drehe den Roboter nach rechts und bewege ihn um drei Schritte nach vorne
+            direction = (direction + 1) % 4;
+            switch (direction) {
+                case 0:  // Norden
+                    y += 3;
+                    break;
+                case 1:  // Osten
+                    x += 3;
+                    break;
+                case 2:  // Süden
+                    y -= 3;
+                    break;
+                case 3:  //
 }
