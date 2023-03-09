@@ -5,7 +5,7 @@ int main() {
     char command;
 
     printf("Willkommen beim Robotersteuerungsprogramm!\n");
-    printf("Befehle: 's' (Schritt), 'd' (Drehung), 'j' (springen), 'h' (hüpfen), 'q' (beenden)\n");
+    printf("Befehle: 's' (Schritt), 'd' (Drehung), 'q' (beenden)\n");
 
     while (command != 'q') {
         printf("Was soll der Roboter als nächstes tun?\n");
@@ -14,38 +14,11 @@ int main() {
         switch (command) {
             case 's':
                 steps++;
-                if (steps == 5) {
-                    printf("Eine Wand taucht direkt vor dem Roboter auf!\n");
-                    printf("In welche Richtung soll sich der Roboter drehen? (l für links, r für rechts)\n");
-                    char direction;
-                    scanf(" %c", &direction);
-                    if (direction == 'l') {
-                        turns += 3;
-                    } else {
-                        turns++;
-                    }
-                } else {
-                    printf("Der Roboter geht einen Schritt nach vorne.\n");
-                }
+                printf("Der Roboter geht einen Schritt nach vorne.\n");
                 break;
             case 'd':
                 turns++;
                 printf("Der Roboter dreht sich um 90 Grad nach rechts.\n");
-                break;
-            case 'j':
-                char jump;
-                printf("Soll der Roboter über die Box springen? (y/n)\n");
-                scanf(" %c", &jump);
-                if (jump == 'y') {
-                    printf("Der Roboter springt über die Box!\n");
-                } else {
-                    printf("Der Roboter läuft um die Box herum.\n");
-                }
-                break;
-            case 'h':
-                for (int i = 0; i < 3; i++) {
-                    printf("Der Roboter hüpft!\n");
-                }
                 break;
             case 'q':
                 printf("Der Roboter wird beendet!\n");
@@ -53,6 +26,20 @@ int main() {
             default:
                 printf("Unbekannter Befehl, bitte versuchen Sie es erneut!\n");
                 break;
+        }
+
+        if (steps == 5) {
+            printf("Eine Wand ist im Weg! Soll der Roboter nach links oder rechts drehen? (l/r)\n");
+            char direction;
+            scanf(" %c", &direction);
+            if (direction == 'l') {
+                turns += 2; // Drehung um 180 Grad nach links
+            } else if (direction == 'r') {
+                // Keine zusätzliche Drehung notwendig
+            } else {
+                printf("Ungültige Richtung angegeben, Roboter wartet an Ort und Stelle.\n");
+            }
+            steps = 0; // Schritte werden zurückgesetzt, da der Roboter an einer Wand steht
         }
     }
 
