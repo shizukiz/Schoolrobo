@@ -16,20 +16,28 @@ int main() {
                 steps++;
                 printf("Der Roboter geht einen Schritt nach vorne.\n");
                 if (steps % 5 == 0) {
-                    printf("Es wurde eine Wand errichtet!\n");
+                    printf("Der Roboter trifft auf eine Wand.\n");
                 }
                 break;
             case 'd':
-                turns++;
-                printf("Der Roboter dreht sich um 90 Grad nach rechts.\n");
+                char direction;
+                printf("In welche Richtung soll der Roboter sich drehen? (l/r)\n");
+                scanf(" %c", &direction);
+                if (direction == 'r') {
+                    turns++;
+                    printf("Der Roboter dreht sich um 90 Grad nach rechts.\n");
+                } else if (direction == 'l') {
+                    turns--;
+                    printf("Der Roboter dreht sich um 90 Grad nach links.\n");
+                } else {
+                    printf("Unbekannte Drehrichtung, bitte versuchen Sie es erneut!\n");
+                }
                 break;
             case 'q':
                 printf("Der Roboter wird beendet!\n");
                 break;
             default:
-                printf("Unbekannter Befehl, bitte versuchen Sie es erneut!\n");
-                break;
-        }
+                      }
     }
 
     if (turns >= 4) {
