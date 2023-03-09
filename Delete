@@ -4,10 +4,13 @@ int main() {
     int steps = 0;
     int battery = 100;
 
+    printf("Willkommen beim Roboter-Steuerungsprogramm!\n");
+    printf("Geben Sie 'l' ein, um den Roboter nach links zu drehen, 'r' um ihn nach rechts zu drehen und 's', um ihn geradeaus zu bewegen. Drücken Sie einfach Enter, um die Eingabe zu bestätigen.\n\n");
+
     while (battery > 0) {
         printf("Schritt %d: ", steps);
         char direction;
-        scanf("%c", &direction);
+        scanf(" %c", &direction);
 
         if (direction == 'l') {
             printf("Nach links drehen.\n");
