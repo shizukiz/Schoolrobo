@@ -81,17 +81,19 @@ int main() {
                     break;
             }
 
-            // Drehe den Roboter nach rechts und bewege ihn um drei Schritte nach vorne
-            direction = (direction + 1) % 4;
-            switch (direction) {
-                case 0:  // Norden
-                    y += 3;
-                    break;
-                case 1:  // Osten
-                    x += 3;
-                    break;
-                case 2:  // Süden
-                    y -= 3;
-                    break;
-                case 3:  //
+// Drehe den Roboter nach rechts und bewege ihn um drei Schritte nach vorne
+direction = (direction + 1) % 4;
+switch (direction) {
+    case 0:  // Norden
+        y += 3;
+        break;
+    case 1:  // Osten
+        x += 3;
+        break;
+    case 2:  // Süden
+        y -= 3;
+        break;
+    case 3:  // Westen
+        x -= 3;
+        break;
 }
